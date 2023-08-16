@@ -11,9 +11,9 @@
             "loggingOptions": "",
             "registryCredentials": {
               "testRegistry1581314": {
-                "username": "testRegistry1581314",
-                "password": "bIjxakNWWoo1RL7+b+aS/xda0rUNIYR5XvYdJJpcYZ+ACRBoYKy3",
-                "address": "testregistry1581314.azurecr.io"
+                "username": "truongvanhuy2000",
+                "password": "plvJIN@411",
+                "address": "hub.docker.com"
             }
             }
           }
@@ -63,7 +63,7 @@
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "testregistry1581314.azurecr.io/testiothub",
+              "image": "truongvanhuy2000/testiothub",
               "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"5671/tcp\":[{\"HostPort\":\"5671\"}],\"8883/tcp\":[{\"HostPort\":\"8883\"}],\"443/tcp\":[{\"HostPort\":\"443\"}]}}}"
             }
           }
