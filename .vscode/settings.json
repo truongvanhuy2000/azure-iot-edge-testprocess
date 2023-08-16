@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "iothub.h": "c",
+        "wait.h": "c",
+        "unistd.h": "c",
+        "threadapi.h": "c",
+        "iothubtransportmqtt.h": "c",
+        "iothub_client_core_common.h": "c",
+        "iothub_module_client.h": "c",
+        "umock_c_prod.h": "c"
+    }
+}
