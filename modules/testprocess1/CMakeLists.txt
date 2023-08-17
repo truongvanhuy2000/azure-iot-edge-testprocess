@@ -43,6 +43,7 @@ target_link_libraries(process1
     prov_auth_client
     hsm_security_client
     uhttp
+    utpm
     aziotsharedutil
     pthread
     curl
@@ -50,6 +51,7 @@ target_link_libraries(process1
     crypto
     m
     uuid
+    
 )
 
 target_link_libraries(process2
@@ -63,6 +65,7 @@ target_link_libraries(process2
     aziotsharedutil
     pthread
     curl
+    utpm
     ssl
     crypto
     m
@@ -80,6 +83,7 @@ target_link_libraries(2process1program
     aziotsharedutil
     pthread
     curl
+    utpm
     ssl
     crypto
     m

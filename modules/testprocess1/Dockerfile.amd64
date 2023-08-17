@@ -1,21 +1,29 @@
-FROM ubuntu:bionic AS base
+FROM ubuntu AS base
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends software-properties-common && \
-    add-apt-repository -y ppa:aziotsdklinux/ppa-azureiot && \
-    apt-get update && \
-    apt-get install -y azure-iot-sdk-c-dev && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends git cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev ca-certificates
+WORKDIR /dep
+RUN git clone https://github.com/Azure/azure-iot-sdk-c.git && \
+    cd azure-iot-sdk-c && \
+    git submodule update --init
+WORKDIR /dep/azure-iot-sdk-c/
+RUN cmake -Bcmake -Duse_edge_modules=ON && \
+    cd cmake && \
+    cmake .. && \
+    cmake --build . && \
+    make install
 
 FROM base AS build-env
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends cmake gcc g++ make && \
-    rm -rf /var/lib/apt/lists/* 
+    apt-get install -y --no-install-recommends gcc g++
 WORKDIR /app
 COPY . ./
-RUN cmake . 
+RUN ls -a /usr/local/lib &&\
+    cmake . 
 RUN make
 
-FROM base
+FROM debian:bookworm-slim
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc libcurl4-openssl-dev 
 WORKDIR /app
 COPY --from=build-env /app ./
 RUN useradd -ms /bin/bash moduleuser
